@@ -13,12 +13,18 @@ namespace _6_din_49
         {
 
             Random random = new Random();
-            int w = 3;
+            int numwinn;
+            int contor = 1;
             int[] numere = new int[6];
             int[] numGenerate = new int[6];
 
-
+            
+            
             string stringnumere = Console.ReadLine();
+
+           
+
+                numwinn = int.Parse(Console.ReadLine());
 
             string[] SplitNumere = stringnumere.Split(' ');
                     
@@ -28,19 +34,63 @@ namespace _6_din_49
                 
             }
 
-
+               
             while(true)
-            {
+            { 
+                Console.Write('c');
+                Console.WriteLine(contor) ; 
+                
+                int k = 0;
 
-                for (int i = 1; i <= 6; i++)
+
+                for (int i = 0; i <6; i++)
                 {
-                  numGenerate[i]  = random.Next(1, 49);
+                  numGenerate[i]  = random.Next(0, 49);
+                }
+                
+                for(int i=0; i<6; i++)
+                {
+                    for (int o = 0; o < 6; o++)
+                    {
+                        Console.Write(numere[o]);
+                        Console.Write(' ');
+                        
+                    }
+                    Console.WriteLine(' ');
+                    for (int j = 0; j <6; j++)
+                    {
+                        
+
+                        if (numere[i] == numGenerate[j])
+                        {
+
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(numGenerate[j]);
+                            Console.Write(' ');
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                            k++;
+                        }
+                        else
+                        {
+
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(numGenerate[j]);
+                            Console.Write(' ');
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                        }
+                    }
+                    Console.WriteLine(' ');
                 }
 
+
+                if (k >= numwinn) { break;}
+                contor++;
+               
             }
         
-     
-          
+              
             Console.ReadLine();
             
         }
