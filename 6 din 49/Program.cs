@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace _6_din_49
             int contor = 1;
             int[] numere = new int[6];
             int[] numGenerate = new int[6];
-
+            int[] vf = new int[6];
             
             
             string stringnumere = Console.ReadLine();
@@ -38,7 +39,7 @@ namespace _6_din_49
             while(true)
             { 
                 Console.Write('c');
-                Console.WriteLine(contor) ; 
+                Console.WriteLine(contor); 
                 
                 int k = 0;
 
@@ -47,43 +48,54 @@ namespace _6_din_49
                 {
                   numGenerate[i]  = random.Next(0, 49);
                 }
-                
-                for(int i=0; i<6; i++)
-                {
-                    for (int o = 0; o < 6; o++)
+                for (int o = 0; o < 6; o++)
                     {
                         Console.Write(numere[o]);
                         Console.Write(' ');
                         
                     }
-                    Console.WriteLine(' ');
-                    for (int j = 0; j <6; j++)
-                    {
-                        
 
+                Console.WriteLine(' ');
+
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
                         if (numere[i] == numGenerate[j])
                         {
-
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(numGenerate[j]);
-                            Console.Write(' ');
-                            Console.ForegroundColor = ConsoleColor.White;
-
-                            k++;
+                            vf[j] = 1;
                         }
                         else
                         {
-
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(numGenerate[j]);
-                            Console.Write(' ');
-                            Console.ForegroundColor = ConsoleColor.White;
-
+                            vf[j] = 0;
                         }
+                         
                     }
-                    Console.WriteLine(' ');
+                    
                 }
+                for(int i = 0;i < 6; i++)
+                {
+                    if (vf[i]==1)
+                    {
 
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(numGenerate[i]);
+                        Console.Write(' ');
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                        k++;
+                    }
+                    else
+                    {
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(numGenerate[i]);
+                        Console.Write(' ');
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                    }
+                }
+                Console.WriteLine(' ');
 
                 if (k >= numwinn) { break;}
                 contor++;
